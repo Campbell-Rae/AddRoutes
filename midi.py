@@ -251,16 +251,14 @@ def seq_do(scn, do):
 
             for area in screen.areas:
                 if area.type == 'VIEW_3D':
-                    override = {'window': window, 'screen': screen, 'area': area}
-                    if do == 'START':
-                        bpy.ops.screen.frame_jump(override, end=False)
-                        bpy.ops.screen.animation_play(override, sync=True)
-                    elif do == 'CONTINUE':
-                        pass
-                        bpy.ops.screen.animation_play(override, sync=True)
-                    elif do == 'STOP':
-                        pass
-                        bpy.ops.screen.animation_cancel(override, restore_frame=False)
+                    with bpy.context.temp_override(window=window, screen=screen, area=area):
+                        if do == 'START':
+                            bpy.ops.screen.frame_jump(end=False)
+                            bpy.ops.screen.animation_play(sync=True)
+                        elif do == 'CONTINUE':
+                            bpy.ops.screen.animation_play(sync=True)
+                        elif do == 'STOP':
+                            bpy.ops.screen.animation_cancel(restore_frame=False)
                     # else:
                     #     fc = bpy.data.scenes["Scene"].frame_current
                     #     diff = do - fc
@@ -580,6 +578,24 @@ class AddRoutes_Midi_Play(bpy.types.Operator):
         return {'FINISHED'}
 
 
+def _group_fcurves(action, group_name):
+    """F-curves of the group `group_name`: legacy actions (< 5.0) and layered/slotted actions (5.x)."""
+    legacy = getattr(action, 'groups', None)
+    if legacy is not None:
+        grp = legacy.get(group_name)
+        if grp is not None:
+            yield from grp.channels
+        return
+    for layer in getattr(action, 'layers', []):
+        for strip in layer.strips:
+            if strip.type != 'KEYFRAME':
+                continue
+            for channelbag in strip.channelbags:
+                grp = channelbag.groups.get(group_name)
+                if grp is not None:
+                    yield from grp.channels
+
+
 class AddRoutes_Midi_Env(bpy.types.Operator):
     '''Apply an envelope on fcurves'''
     bl_idname = "addroutes.midienv"
@@ -604,65 +620,63 @@ class AddRoutes_Midi_Env(bpy.types.Operator):
         RAMP_SUM = RAMP_UP + RAMP_DOWN
 
         for action in bpy.data.actions:
-            if hasattr(action, 'groups'):
-                if action.groups.get(GRP) is not None:
-                    fcurves = action.groups[GRP].channels
-                    for fcurve in fcurves:
-                        # getting a immutable array of points
-                        pts = []
-                        pts_new = []
-                        for pt in fcurve.keyframe_points:
-                            pts.append(list(pt.co))
+            fcurves = list(_group_fcurves(action, GRP))
+            for fcurve in fcurves:
+                # getting a immutable array of points
+                pts = []
+                pts_new = []
+                for pt in fcurve.keyframe_points:
+                    pts.append(list(pt.co))
 
-                        # iterating over sections
-                        lenx = len(pts)
-                        for i in range(lenx - 1):
-                            if i > 0:
-                                h1 = pts[i - 1][1]
-                            h2 = pts[i + 1][1]
+                # iterating over sections
+                lenx = len(pts)
+                for i in range(lenx - 1):
+                    if i > 0:
+                        h1 = pts[i - 1][1]
+                    h2 = pts[i + 1][1]
 
-                            # we only need to fill gaps for now
-                            if pts[i][1] == 0:
-                                diff = pts[i + 1][0] - pts[i][0]
+                    # we only need to fill gaps for now
+                    if pts[i][1] == 0:
+                        diff = pts[i + 1][0] - pts[i][0]
 
-                                # need to calculate intersection point if range is too narrow
-                                if diff < RAMP_SUM and pts[i][0] != 0:
-                                    # intersection of the 2 lines -> y = d + px
-                                    # line1 - Release : y = h1 - R_Dx
-                                    # line2 - Attack :  y = (h2 - diff * R_U) + R_Ux
-                                    # x = (d1 - d2) / (R_D + R_U)
-                                    R_D_RATE = h1 / RAMP_DOWN
-                                    R_U_RATE = h2 / RAMP_UP
-                                    d2 = h2 - diff * R_U_RATE
-                                    x = (h1 - d2) / (R_D_RATE + R_U_RATE)
-                                    y = h1 - R_D_RATE * x
-                                    pts_new.append((pts[i][0]+x, y))
+                        # need to calculate intersection point if range is too narrow
+                        if diff < RAMP_SUM and pts[i][0] != 0:
+                            # intersection of the 2 lines -> y = d + px
+                            # line1 - Release : y = h1 - R_Dx
+                            # line2 - Attack :  y = (h2 - diff * R_U) + R_Ux
+                            # x = (d1 - d2) / (R_D + R_U)
+                            R_D_RATE = h1 / RAMP_DOWN
+                            R_U_RATE = h2 / RAMP_UP
+                            d2 = h2 - diff * R_U_RATE
+                            x = (h1 - d2) / (R_D_RATE + R_U_RATE)
+                            y = h1 - R_D_RATE * x
+                            pts_new.append((pts[i][0]+x, y))
 
-                                else:
-                                    # the range is wide enough for 2 pts
-                                    if pts[i][0] != context.scene.mf_offset:
-                                        pts_new.append((pts[i][0] + RAMP_DOWN, 0))
-                                    pts_new.append((pts[i + 1][0] - RAMP_UP, 0))
+                        else:
+                            # the range is wide enough for 2 pts
+                            if pts[i][0] != context.scene.mf_offset:
+                                pts_new.append((pts[i][0] + RAMP_DOWN, 0))
+                            pts_new.append((pts[i + 1][0] - RAMP_UP, 0))
 
-                                # at any rate, we need to "reshape" the flip flop curve by moving original pt
-                                if pts[i][0] > context.scene.mf_offset:
-                                    fcurve.keyframe_points[i].co[1] = h1
+                        # at any rate, we need to "reshape" the flip flop curve by moving original pt
+                        if pts[i][0] > context.scene.mf_offset:
+                            fcurve.keyframe_points[i].co[1] = h1
 
-                        # closing
-                        pts_new.append((pts[-1][0] + RAMP_DOWN, 0))
-                        fcurve.keyframe_points[-1].co[1] = pts[i][1]
+                # closing
+                pts_new.append((pts[-1][0] + RAMP_DOWN, 0))
+                fcurve.keyframe_points[-1].co[1] = pts[i][1]
 
-                        # starting
-                        pts_new.append((pts[0][0] - RAMP_UP, 0))
+                # starting
+                pts_new.append((pts[0][0] - RAMP_UP, 0))
 
-                        # actually creating points
-                        for pt in pts_new:
-                            #print("inserting", pt)
-                            fcurve.keyframe_points.insert(pt[0], pt[1])
+                # actually creating points
+                for pt in pts_new:
+                    #print("inserting", pt)
+                    fcurve.keyframe_points.insert(pt[0], pt[1])
 
-                        # change the interpolation mode
-                        for pt in fcurve.keyframe_points:
-                            pt.interpolation = 'LINEAR'
+                # change the interpolation mode
+                for pt in fcurve.keyframe_points:
+                    pt.interpolation = 'LINEAR'
 
         self.report({'INFO'}, "Post processing done")
         return {'FINISHED'}

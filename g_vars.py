@@ -19,7 +19,7 @@
 # ##### END GPL LICENSE BLOCK #####
 
 import bpy
-import rtmidi
+from . import rtmidi_compat as rtmidi
 # Creation of two MIDI ports
 midiin = rtmidi.MidiIn()
 midiout = rtmidi.MidiOut()
@@ -55,8 +55,8 @@ def evalprop (toeval, withctx):
 
         for area in screen.areas:
             if area.type == withctx:
-                override = {'window': window, 'screen': screen, 'area': area}
-                bpy.ops.addroutes.getctx(override, s=toeval)
+                with bpy.context.temp_override(window=window, screen=screen, area=area):
+                    bpy.ops.addroutes.getctx(s=toeval)
 
 
 def get_item(i, j):

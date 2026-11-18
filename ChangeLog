@@ -1,3 +1,16 @@
+V0.35 (fork)
+    - Every route keeps its numbered title and has an always-visible, editable name/function field under it
+    - Removed the "Show name setting" checkbox (the field is always shown)
+    - Maintainer credit set to Campbell Rae
+
+V0.34 (Blender 5.x port, fork)
+    - Runs on Blender 5.3 / Python 3.13
+    - Replaced python-rtmidi (no Python 3.13 wheels) with rtmidi2, behind a small compatibility wrapper (rtmidi_compat.py)
+    - MIDI backend is created lazily, so the add-on loads even when no MIDI backend is available
+    - Replaced removed context-override dict calls with bpy.context.temp_override()
+    - Fixed "Apply envelope" for Blender 5.x layered actions (Action.groups was removed)
+    - Bundled rtmidi2 wheels for Python 3.11 and 3.13 on Linux x64, Windows x64, macOS x64 and arm64
+
 V0.33
     - Updated project structure to match new Blender add-on recommendations
     - Updated packages to work with Blender 4.2

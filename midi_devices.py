@@ -24,9 +24,8 @@ from bpy.utils import register_class, unregister_class
 from bpy.app.handlers import persistent
 from bpy_extras.io_utils import ImportHelper
 
-import rtmidi
-from rtmidi.midiutil import open_midiinput
-from rtmidi.midiutil import open_midioutput
+from . import rtmidi_compat as rtmidi
+from .rtmidi_compat import open_midiinput, open_midioutput
 
 import platform
 

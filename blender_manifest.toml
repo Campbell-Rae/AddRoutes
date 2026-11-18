@@ -1,10 +1,10 @@
 schema_version = "1.0.0"
 
 id = "addroutes"
-version = "0.33.0"
+version = "0.35.0"
 name = "AddRoutes"
-tagline = "Allow MIDI, OSC and a remote Android App to control Blender 4.2"
-maintainer = "JPfeP"
+tagline = "Allow MIDI, OSC and a remote Android App to control Blender"
+maintainer = "Campbell Rae"
 type = "add-on"
 
 blender_version_min = "4.2.0"
@@ -20,9 +20,14 @@ wheels = [
     "./wheels/oscpy-0.6.0-py2.py3-none-any.whl",
     "./wheels/packaging-24.2-py3-none-any.whl",
     "./wheels/ifaddr-0.2.0-py3-none-any.whl",
-    "./wheels/python_rtmidi-1.5.8-cp311-cp311-macosx_11_0_arm64.whl",
-    "./wheels/python_rtmidi-1.5.8-cp311-cp311-manylinux_2_28_x86_64.whl",
-    "./wheels/python_rtmidi-1.5.8-cp311-cp311-win_amd64.whl"
+    "./wheels/rtmidi2-1.5.0-cp311-cp311-macosx_10_9_x86_64.whl",
+    "./wheels/rtmidi2-1.5.0-cp311-cp311-macosx_11_0_arm64.whl",
+    "./wheels/rtmidi2-1.5.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+    "./wheels/rtmidi2-1.5.0-cp311-cp311-win_amd64.whl",
+    "./wheels/rtmidi2-1.5.0-cp313-cp313-macosx_10_13_x86_64.whl",
+    "./wheels/rtmidi2-1.5.0-cp313-cp313-macosx_11_0_arm64.whl",
+    "./wheels/rtmidi2-1.5.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+    "./wheels/rtmidi2-1.5.0-cp313-cp313-win_amd64.whl"
 ]
 
 [permissions]

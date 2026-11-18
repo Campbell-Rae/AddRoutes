@@ -1,4 +1,5 @@
 version = 1
+revision = 3
 requires-python = ">=3.11"
 
 [[package]]
@@ -9,7 +10,7 @@ dependencies = [
     { name = "ifaddr" },
     { name = "mido" },
     { name = "oscpy" },
-    { name = "python-rtmidi" },
+    { name = "rtmidi2" },
 ]
 
 [package.metadata]
@@ -17,16 +18,16 @@ requires-dist = [
     { name = "ifaddr", specifier = ">=0.2.0" },
     { name = "mido", specifier = ">=1.3.3" },
     { name = "oscpy", specifier = ">=0.6.0" },
-    { name = "python-rtmidi", specifier = ">=1.5.8" },
+    { name = "rtmidi2", specifier = ">=1.5.0" },
 ]
 
 [[package]]
 name = "ifaddr"
 version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e8/ac/fb4c578f4a3256561548cd825646680edcadb9440f3f68add95ade1eb791/ifaddr-0.2.0.tar.gz", hash = "sha256:cc0cbfcaabf765d44595825fb96a99bb12c79716b73b44330ea38ee2b0c4aed4", size = 10485 }
+sdist = { url = "https://files.pythonhosted.org/packages/e8/ac/fb4c578f4a3256561548cd825646680edcadb9440f3f68add95ade1eb791/ifaddr-0.2.0.tar.gz", hash = "sha256:cc0cbfcaabf765d44595825fb96a99bb12c79716b73b44330ea38ee2b0c4aed4", size = 10485, upload-time = "2022-06-15T21:40:27.561Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9c/1f/19ebc343cc71a7ffa78f17018535adc5cbdd87afb31d7c34874680148b32/ifaddr-0.2.0-py3-none-any.whl", hash = "sha256:085e0305cfe6f16ab12d72e2024030f5d52674afad6911bb1eee207177b8a748", size = 12314 },
+    { url = "https://files.pythonhosted.org/packages/9c/1f/19ebc343cc71a7ffa78f17018535adc5cbdd87afb31d7c34874680148b32/ifaddr-0.2.0-py3-none-any.whl", hash = "sha256:085e0305cfe6f16ab12d72e2024030f5d52674afad6911bb1eee207177b8a748", size = 12314, upload-time = "2022-06-15T21:40:25.756Z" },
 ]
 
 [[package]]
@@ -36,43 +37,52 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/23/14/cfda3fe61ce4c0f50a9f707ae02b46cb53211732b2cd4522bf06272848f4/mido-1.3.3.tar.gz", hash = "sha256:1aecb30b7f282404f17e43768cbf74a6a31bf22b3b783bdd117a1ce9d22cb74c", size = 124288 }
+sdist = { url = "https://files.pythonhosted.org/packages/23/14/cfda3fe61ce4c0f50a9f707ae02b46cb53211732b2cd4522bf06272848f4/mido-1.3.3.tar.gz", hash = "sha256:1aecb30b7f282404f17e43768cbf74a6a31bf22b3b783bdd117a1ce9d22cb74c", size = 124288, upload-time = "2024-10-25T15:05:21.847Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fd/28/45deb15c11859d2f10702b32e71de9328a9fa494f989626916db39a9617f/mido-1.3.3-py3-none-any.whl", hash = "sha256:01033c9b10b049e4436fca2762194ca839b09a4334091dd3c34e7f4ae674fd8a", size = 54614 },
+    { url = "https://files.pythonhosted.org/packages/fd/28/45deb15c11859d2f10702b32e71de9328a9fa494f989626916db39a9617f/mido-1.3.3-py3-none-any.whl", hash = "sha256:01033c9b10b049e4436fca2762194ca839b09a4334091dd3c34e7f4ae674fd8a", size = 54614, upload-time = "2024-10-25T15:05:20.349Z" },
 ]
 
 [[package]]
 name = "oscpy"
 version = "0.6.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/82/7c/789cfe254819e51dd544e558fd426efa3611f976694558a3c558b4cca73f/oscpy-0.6.0.tar.gz", hash = "sha256:0728a5a7266732c9d64630063d384911d5d6ae474416b79b78d4905773fb6d33", size = 18783 }
+sdist = { url = "https://files.pythonhosted.org/packages/82/7c/789cfe254819e51dd544e558fd426efa3611f976694558a3c558b4cca73f/oscpy-0.6.0.tar.gz", hash = "sha256:0728a5a7266732c9d64630063d384911d5d6ae474416b79b78d4905773fb6d33", size = 18783, upload-time = "2021-06-21T21:34:29.529Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d9/97/84e4e1054ce4e4ce95511e4f74a5de4e61802faaeaa55638393f0116b66b/oscpy-0.6.0-py2.py3-none-any.whl", hash = "sha256:88de3f67bb21fa094f8b782641158bc763a0b96a74f8d7d26556ada6eb5b363a", size = 18495 },
+    { url = "https://files.pythonhosted.org/packages/d9/97/84e4e1054ce4e4ce95511e4f74a5de4e61802faaeaa55638393f0116b66b/oscpy-0.6.0-py2.py3-none-any.whl", hash = "sha256:88de3f67bb21fa094f8b782641158bc763a0b96a74f8d7d26556ada6eb5b363a", size = 18495, upload-time = "2021-06-21T21:34:28.067Z" },
 ]
 
 [[package]]
 name = "packaging"
 version = "24.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d0/63/68dbb6eb2de9cb10ee4c9c14a0148804425e13c4fb20d61cce69f53106da/packaging-24.2.tar.gz", hash = "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f", size = 163950 }
+sdist = { url = "https://files.pythonhosted.org/packages/d0/63/68dbb6eb2de9cb10ee4c9c14a0148804425e13c4fb20d61cce69f53106da/packaging-24.2.tar.gz", hash = "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f", size = 163950, upload-time = "2024-11-08T09:47:47.202Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759", size = 65451 },
+    { url = "https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759", size = 65451, upload-time = "2024-11-08T09:47:44.722Z" },
 ]
 
 [[package]]
-name = "python-rtmidi"
-version = "1.5.8"
+name = "rtmidi2"
+version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/dd/ee/0f91965dcc471714c69df21e5ca3d94dc81411b7dee2d31ff1184bea07c9/python_rtmidi-1.5.8.tar.gz", hash = "sha256:7f9ade68b068ae09000ecb562ae9521da3a234361ad5449e83fc734544d004fa", size = 368130 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4b/0c/23be16b75c90946784b8d233e61db14cf0482def5396821a1ae0bdcd2739/python_rtmidi-1.5.8-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:30d117193dcad8af67c600c405f53eb096e4ff84849760be14c97270af334922", size = 150205 },
-    { url = "https://files.pythonhosted.org/packages/4b/12/37d41151b08a292719f05dbeae15475537f8aa291cda34c6634b35916dff/python_rtmidi-1.5.8-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:4e234dca7f9d783dd3f1e9c9c5c2f295f02b7af3085301d6eed3b428cf49d327", size = 146737 },
-    { url = "https://files.pythonhosted.org/packages/53/5e/b866491545135c699bfbed62f54b93c4d6587afc2bba6e2cbbe898570c32/python_rtmidi-1.5.8-cp311-cp311-manylinux_2_28_aarch64.whl", hash = "sha256:271d625c489fffb39b3edc5aba67f7c8e29a04a0a0f056ce19e5a888a08b4c59", size = 294847 },
-    { url = "https://files.pythonhosted.org/packages/a0/79/1ddb4fb1bdb1a8b8bd62007ca4980344a53b7f29633a7bca1088eed964ce/python_rtmidi-1.5.8-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:46bbf32c8a4bf6c8f0df1c02a68689d0757f13cb7a69f27ccbbed3d7b2365918", size = 305433 },
-    { url = "https://files.pythonhosted.org/packages/13/ff/2c55797dbf020d462132d1bc5b34d596b400fa197e2a259b8dd2ea2e5954/python_rtmidi-1.5.8-cp311-cp311-win_amd64.whl", hash = "sha256:cfea32c91752fa7aecfe3d6827535c190ba0e646a9accd6604f4fc70cf4b780f", size = 132937 },
-    { url = "https://files.pythonhosted.org/packages/51/27/887b0378e0a907489a07bdeb808fa5ed349675245c6ee14d9f6d00304f96/python_rtmidi-1.5.8-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:5443634597eb340cdec0734f76267a827c2d366f00a6f9195141c78828016ac2", size = 158861 },
-    { url = "https://files.pythonhosted.org/packages/4d/ec/57cecde253daab896ce53778520cd41eb062641862ebdb0ee6f97511b1d9/python_rtmidi-1.5.8-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:29d9c9d9f82ce679fecad7bb4cb79f3a24574ea84600e377194b4cc1baacec0e", size = 153416 },
-    { url = "https://files.pythonhosted.org/packages/6f/5b/dc19c53d9d512b74dc2cca3725591cc612b9465645695a0696352a8c8b54/python_rtmidi-1.5.8-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:25f5a5db7be98911c41ca5bebb262fcf9a7c89600b88fd3c207ceafd3101e721", size = 305696 },
-    { url = "https://files.pythonhosted.org/packages/f6/92/5a60f56dfb2740e644e932233928947423cd2101895319b331f84527eb31/python_rtmidi-1.5.8-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:cec30924e305f55284594ccf35a71dee7216fd308dfa2dec1b3ed03e6f243803", size = 315579 },
-    { url = "https://files.pythonhosted.org/packages/93/46/6af077d262f521ea2bf1ab60b8aad72f34fe6dd55af739176605369d449c/python_rtmidi-1.5.8-cp312-cp312-win_amd64.whl", hash = "sha256:052c89933cae4fca354012d8ca7248f4f9e1e3f062471409d48415a7f7d7e59e", size = 129755 },
+    { url = "https://files.pythonhosted.org/packages/48/73/d4eb28713431d6e36d498686e71cf90f877f8d50cd84ac9ceed462bce07b/rtmidi2-1.5.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:ae4148ac1ec9a51fa1c4d40e033d94b8ba3dfad78d59ac1a23d6710579df5b54", size = 180693, upload-time = "2026-10-07T13:28:57.081Z" },
+    { url = "https://files.pythonhosted.org/packages/2b/09/c81bd3078f7503a5caf383c1e7f03778f6ef46006d5b82329c908880acb2/rtmidi2-1.5.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3b3f0463e9d80749cf6e473f0d74cec00f9484067629420202d3a0ff489adb84", size = 172315, upload-time = "2026-10-07T13:28:58.031Z" },
+    { url = "https://files.pythonhosted.org/packages/08/bf/a28b8ea7af2129e0c02cca24b552159d204e1a96d995e803ffb9db795741/rtmidi2-1.5.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:0b04eab0d87096e7ed4d75ff5bd253d17157990158d4f35bc92b767fe2a68755", size = 4428194, upload-time = "2026-10-07T13:27:23.711Z" },
+    { url = "https://files.pythonhosted.org/packages/54/15/d4664e3a6a02faa51b993c94ad8dcbf88b1c8d46b744aad6c1e0d617ca65/rtmidi2-1.5.0-cp311-cp311-win32.whl", hash = "sha256:b49c5c9dae4152e06f1bb833b438e361505ffae9b31924fccc07ff82ed7a4bdc", size = 314291, upload-time = "2026-10-07T13:30:56.322Z" },
+    { url = "https://files.pythonhosted.org/packages/d7/31/7b22f6200adf486f38306e3bc20b463c5a05d5f133417de74e00aa6ed6ba/rtmidi2-1.5.0-cp311-cp311-win_amd64.whl", hash = "sha256:d56e9e1aabbec2ab2076639529e5d847a2259bdec7b8f255d8d671eba72ab57c", size = 329574, upload-time = "2026-10-07T13:30:57.241Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/3c/e1e7cfb725e762f9d51a5a61042a0f015837ff3b29ba5bdef3f7bc246271/rtmidi2-1.5.0-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:f544e848de0e1ab6739bbeeae61c14eb7c9d0fb103d95a7f7296861976f1223b", size = 178281, upload-time = "2026-10-07T13:28:59.252Z" },
+    { url = "https://files.pythonhosted.org/packages/18/ad/5f3467cd487dea1395fc69b3a57ff27f4af533d13593e0c77e7d9fcc6303/rtmidi2-1.5.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:755283110c1a92dbc8e57a8cd6e83581f380b33d1dc49fe6ac69c7cfc10ae50d", size = 172359, upload-time = "2026-10-07T13:29:00.327Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/76/e43d5d45b7b48298214d6bd00005fe726acfa5080d7c1d6d3231d9328d8e/rtmidi2-1.5.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d76af300722b7bb3c7eab382231006480d72bbd405637868d7edb10af302ad50", size = 4389889, upload-time = "2026-10-07T13:27:25.291Z" },
+    { url = "https://files.pythonhosted.org/packages/55/5a/c5115eaffc3c83a271c755bd6b91c23bc1bb74b347c71cecf878d9807d38/rtmidi2-1.5.0-cp312-cp312-win32.whl", hash = "sha256:c1820394078dd072dbf6968cd2278e6519a841ef690feaec6e60d11db1dc7040", size = 313072, upload-time = "2026-10-07T13:30:58.274Z" },
+    { url = "https://files.pythonhosted.org/packages/ae/7e/6723a836fb3089bae18ef70c70c91a8367f1a147f8a73c61a1f977f70fc3/rtmidi2-1.5.0-cp312-cp312-win_amd64.whl", hash = "sha256:291369d6e1c348ec1d007179b484e533a3ff1cc3522706d38089ed2fee963239", size = 327447, upload-time = "2026-10-07T13:30:59.378Z" },
+    { url = "https://files.pythonhosted.org/packages/05/16/60aa57a0bcbe05f515f16be4e6bfb8870328c4b187a14279beaf239181ac/rtmidi2-1.5.0-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:3855e79ceedbfe8837ec9c5ce8c1a196f77bfd961dc6cb7bed8b6a0b5b6f7f26", size = 180532, upload-time = "2026-10-07T13:29:01.317Z" },
+    { url = "https://files.pythonhosted.org/packages/d0/32/957885e56c7eaaf4ffb504109a2c389fa3e995d7992893d490d2559d42fd/rtmidi2-1.5.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:e42a95d20336db408ef337d84821593a4c5a78a3870173baf54a033f18689ed4", size = 172932, upload-time = "2026-10-07T13:29:02.542Z" },
+    { url = "https://files.pythonhosted.org/packages/b1/e0/6dbf79e6fcf55e0417da8ce019ad40f35742ce16fad55df358494577784c/rtmidi2-1.5.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b48dfa8ff5dd566fa16bd8dacb90a4e2d5dbcb858b21389bcb60a1d370aa760d", size = 4391988, upload-time = "2026-10-07T13:27:26.618Z" },
+    { url = "https://files.pythonhosted.org/packages/58/f9/b1e83fbf73ad1559db26bba7e6541c133a3f08994d82a8ef7ea07cf25f9a/rtmidi2-1.5.0-cp313-cp313-win32.whl", hash = "sha256:b82b3a2c5b98cb123fcc1fe8a31b365e7c4595c08dfb447a1465860ffdc264e5", size = 313000, upload-time = "2026-10-07T13:31:00.509Z" },
+    { url = "https://files.pythonhosted.org/packages/17/8d/1003ad5bfc049e43bd89fbb8b3e7575ad150337f326bd0b5c29e01d51105/rtmidi2-1.5.0-cp313-cp313-win_amd64.whl", hash = "sha256:902edd824806d5bb1b73316e14b2cd30bfcc28227e16c003059067b848800e75", size = 326984, upload-time = "2026-10-07T13:31:01.523Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/86/63293ad9c83c70732a7d6f4a109a710704ff35cfe90f9a127131add240a6/rtmidi2-1.5.0-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:eb4d2545d5580e02f4496f5d496e2bfbe5f7ccf007658959eaf1280a75e3b831", size = 181531, upload-time = "2026-10-07T13:29:03.471Z" },
+    { url = "https://files.pythonhosted.org/packages/03/a5/0edf982441925a5f412f120b6d3f66257d9cb7fb218825486b2d97342a51/rtmidi2-1.5.0-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:35ab59fb5dc0cf738f1944a911a204e291deee7d7225e76697b9b6c829804e08", size = 174788, upload-time = "2026-10-07T13:29:04.375Z" },
+    { url = "https://files.pythonhosted.org/packages/40/70/645cbafedab61713f22abd429fc4ee57b398b5f735e471b1e85f394841de/rtmidi2-1.5.0-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:2b391cecb22e108f912dfbbf7d0caaba7a4d76ad34b92ca0f5cc72eb11a808c8", size = 4375672, upload-time = "2026-10-07T13:27:28.052Z" },
+    { url = "https://files.pythonhosted.org/packages/e9/97/3c9717f4e032fac7783ef376a0ff5f42334ac91fee39f678f97907a9c5d6/rtmidi2-1.5.0-cp314-cp314-win32.whl", hash = "sha256:e51c83f17393d61fccdf4faa75eea2f6ab649838fa7d80a492054a3777e91e95", size = 321563, upload-time = "2026-10-07T13:31:02.47Z" },
+    { url = "https://files.pythonhosted.org/packages/06/a0/4cf862ff71b80cba34826d98b1dbac93be95efb8bc3b1ee04744a42fc214/rtmidi2-1.5.0-cp314-cp314-win_amd64.whl", hash = "sha256:da63a582d74beab2d169ed0b61d26c9de27fddf624b057a8447f202b7abf2ed5", size = 338465, upload-time = "2026-10-07T13:31:03.479Z" },
 ]

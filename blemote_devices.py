@@ -173,6 +173,7 @@ def Blemote_callback(*args):
         blem_cnt = args[2]
 
     elif addr == '/Sequencer':
+        override = {}
         for window in bpy.data.window_managers[0].windows:
             screen = window.screen
 
@@ -180,26 +181,27 @@ def Blemote_callback(*args):
                 if area.type == 'DOPESHEET_EDITOR':
                     override = {'window': window, 'screen': screen, 'area': area}
 
-        if args[1] == 'Play':
-            bpy.ops.screen.animation_play(override, sync=True)
+        with bpy.context.temp_override(**override):
+            if args[1] == 'Play':
+                bpy.ops.screen.animation_play(sync=True)
 
-        elif args[1] == 'Backward':
-            bpy.ops.screen.animation_play(override, reverse= True, sync=True)
+            elif args[1] == 'Backward':
+                bpy.ops.screen.animation_play(reverse=True, sync=True)
 
-        elif args[1] == 'Start':
-            bpy.ops.screen.frame_jump(override, end=False)
-        elif args[1] == 'End':
-            bpy.ops.screen.frame_jump(override, end=True)
+            elif args[1] == 'Start':
+                bpy.ops.screen.frame_jump(end=False)
+            elif args[1] == 'End':
+                bpy.ops.screen.frame_jump(end=True)
 
-        elif args[1] == 'KF+':
-            bpy.ops.screen.keyframe_jump(override, next=True)
-        elif args[1] == 'KF-':
-            bpy.ops.screen.keyframe_jump(override, next=False)
+            elif args[1] == 'KF+':
+                bpy.ops.screen.keyframe_jump(next=True)
+            elif args[1] == 'KF-':
+                bpy.ops.screen.keyframe_jump(next=False)
 
-        elif args[1] == 'Marker+':
-            bpy.ops.screen.marker_jump(override, next=True)
-        elif args[1] == 'Marker-':
-            bpy.ops.screen.marker_jump(override, next=False)
+            elif args[1] == 'Marker+':
+                bpy.ops.screen.marker_jump(next=True)
+            elif args[1] == 'Marker-':
+                bpy.ops.screen.marker_jump(next=False)
 
 
 
